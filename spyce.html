@@ -1,0 +1,1682 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b090b">
+  <meta name="description"
+    content="SPYCE — meet with intention. Discover real chemistry, express what you're looking for, and connect with more confidence.">
+  <title>SPYCE — Chemistry, with intention.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@dotlottie/player-component@2.7.12/dist/dotlottie-player.js"></script>
+  <style>
+    :root {
+      --bg: #0b090b;
+      --panel: #141114;
+      --panel2: #1b1517;
+      --orange: #f36b35;
+      --orange2: #ff9a59;
+      --cream: #fff5eb;
+      --muted: #b9adb2;
+      --line: rgba(255, 255, 255, .12);
+      --max: 1180px
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #fff;
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    button {
+      font: inherit
+    }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 48px));
+      margin: auto
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+      opacity: .035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E")
+    }
+
+    .ambient {
+      position: fixed;
+      inset: -15%;
+      z-index: -2;
+      pointer-events: none;
+      background: radial-gradient(ellipse at 72% 18%, rgba(243, 107, 53, .18), transparent 28%), radial-gradient(ellipse at 15% 60%, rgba(152, 46, 25, .14), transparent 27%), #0b090b;
+      animation: ambient 14s ease-in-out infinite alternate
+    }
+
+    @keyframes ambient {
+      to {
+        transform: translate3d(2%, -1%, 0) scale(1.06);
+        filter: hue-rotate(-8deg)
+      }
+    }
+
+    .topo {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .topo svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    header {
+      height: 88px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 10
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: #fff;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 32px;
+      color: #c9bec2;
+      font-size: 14px
+    }
+
+    .navlinks a:hover {
+      color: white
+    }
+
+    .nav-cta,
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid rgba(255, 255, 255, .17);
+      border-radius: 999px;
+      padding: 13px 19px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: .25s;
+      cursor: pointer
+    }
+
+    .nav-cta {
+      background: #fff;
+      color: #151013;
+      border-color: #fff
+    }
+
+    .nav-cta:hover,
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px #f36b3540
+    }
+
+    .menu {
+      display: none;
+      background: none;
+      border: 0;
+      color: white;
+      font-size: 25px
+    }
+
+    .hero {
+      min-height: 720px;
+      padding: 74px 0 100px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: radial-gradient(110% 95% at 72% 48%, #36170d 0%, #200d07 38%, #140804 70%, #0a0402 100%);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.04fr .96fr;
+      gap: 38px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: 11px;
+      font-weight: 700;
+      color: #ff9b6b
+    }
+
+    .eyebrow:before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--orange)
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: -.055em
+    }
+
+    h1 {
+      font-size: clamp(52px, 6.4vw, 88px);
+      line-height: .99;
+      margin: 23px 0 25px;
+      max-width: 690px
+    }
+
+    h1 .hot {
+      color: var(--orange);
+      position: relative;
+      white-space: nowrap
+    }
+
+    h1 .hot:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -8px;
+      height: 6px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #2b7a3e 0%, #3ba55d 28%, #d85724 68%, #f36b35 100%);
+      box-shadow: 0 2px 10px rgba(243, 107, 53, 0.35);
+    }
+
+    .hero-copy {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #c9bec2;
+      max-width: 525px
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+      margin: 30px 0 27px
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: #1a0c08;
+      border-color: var(--orange)
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, .04)
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, .1);
+      transform: translateY(-2px)
+    }
+
+    .tiny-proof {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #a99da2;
+      font-size: 12px
+    }
+
+    .pulse {
+      width: 7px;
+      height: 7px;
+      background: #70e0a2;
+      border-radius: 50%;
+      box-shadow: 0 0 14px #70e0a2
+    }
+
+    .visual {
+      height: 535px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1200px
+    }
+
+    .orb {
+      display: none;
+    }
+
+    @keyframes orb {
+      to {
+        transform: translate(18px, -18px) scale(1.07)
+      }
+    }
+
+    .phone {
+      width: 250px;
+      height: 490px;
+      border: 1px solid #ffffff35;
+      border-radius: 38px;
+      background: linear-gradient(155deg, #302024, #100d10 62%);
+      padding: 9px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 35px 90px #000b, 0 0 0 5px #ffffff08;
+      transform: rotate(-5deg);
+      animation: float 6s ease-in-out infinite
+    }
+
+    .phone-inner {
+      height: 100%;
+      border-radius: 30px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #f7b18a, #ef6b3d 39%, #2b1718 72%, #100d10);
+      position: relative;
+      padding: 18px 15px
+    }
+
+    .phone-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      color: #fff;
+      font-weight: 700
+    }
+
+    .phone-brand {
+      font-family: "Space Grotesk";
+      font-size: 22px;
+      letter-spacing: .07em
+    }
+
+    .phone-brand span {
+      color: #ffe0c9
+    }
+
+    .profile-photo {
+      height: 278px;
+      margin-top: 15px;
+      border-radius: 23px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(145deg, #ffc29a, #b14b30 47%, #3b2024)
+    }
+
+    .profile-photo:before {
+      content: "";
+      position: absolute;
+      width: 155px;
+      height: 210px;
+      left: 48px;
+      top: 26px;
+      border-radius: 90px 90px 36px 36px;
+      background: linear-gradient(130deg, #e5a07b, #6f332c 68%);
+      transform: rotate(-9deg);
+      box-shadow: inset 15px 0 25px #ffcfaa50
+    }
+
+    .profile-photo:after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 112px;
+      left: 75px;
+      top: 42px;
+      border-radius: 48% 48% 43% 43%;
+      background: linear-gradient(120deg, #8c4d3c, #d58b68 55%, #6a322a);
+      box-shadow: 0 -16px 0 9px #211619
+    }
+
+    .photo-sheen {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, #130d10d9, transparent 55%)
+    }
+
+    .profile-info {
+      position: absolute;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      color: white
+    }
+
+    .profile-info strong {
+      font: 600 22px "Space Grotesk"
+    }
+
+    .profile-info p {
+      font-size: 10px;
+      margin: 5px 0 0;
+      color: #f7ded3
+    }
+
+    .profile-tags {
+      display: flex;
+      gap: 5px;
+      margin-top: 10px
+    }
+
+    .profile-tags span {
+      font-size: 9px;
+      border: 1px solid #ffffff70;
+      border-radius: 20px;
+      padding: 5px 8px;
+      background: #130d1044
+    }
+
+    .phone-bottom {
+      display: flex;
+      justify-content: center;
+      gap: 19px;
+      margin-top: 13px
+    }
+
+    .action-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #ffffff16;
+      border: 1px solid #ffffff2e;
+      font-size: 19px
+    }
+
+    .action-circle.like {
+      background: var(--orange);
+      color: #23100a;
+      border: 0;
+      box-shadow: 0 5px 25px #f36b3560
+    }
+
+    .float-card {
+      position: absolute;
+      z-index: 6;
+      background: rgba(33, 25, 29, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 18px;
+      padding: 13px 16px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      animation: float 5s ease-in-out infinite;
+      white-space: nowrap;
+    }
+
+    .float-card small {
+      display: block;
+      color: #bbaeb3;
+      font-size: 10px;
+      margin-bottom: 6px
+    }
+
+    .float-card strong {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 14px
+    }
+
+    .match-card {
+      top: 55px;
+      right: 15px;
+      transform: rotate(5deg)
+    }
+
+    .match-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      background: #f36b3522;
+      color: #ff9669;
+      margin-right: 7px
+    }
+
+    .safe-card {
+      bottom: 55px;
+      left: 15px;
+      transform: rotate(-5deg);
+      animation-delay: -2s
+    }
+
+    .safe-icon {
+      color: #7be0a8;
+      margin-right: 8px
+    }
+
+    .spark {
+      position: absolute;
+      color: #ff9d6b;
+      font-size: 24px;
+      animation: twinkle 3s infinite alternate
+    }
+
+    .s1 {
+      top: 65px;
+      left: 19%
+    }
+
+    .s2 {
+      bottom: 95px;
+      right: 14%;
+      font-size: 35px;
+      animation-delay: 1s
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        translate: 0 0
+      }
+
+      50% {
+        translate: 0 -12px
+      }
+    }
+
+    @keyframes twinkle {
+      to {
+        opacity: .3;
+        transform: scale(.7) rotate(35deg)
+      }
+    }
+
+    .marquee {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+      background: #100d10
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      gap: 32px;
+      padding: 20px 0;
+      animation: marquee 28s linear infinite;
+      color: #cfc1c5;
+      text-transform: uppercase;
+      letter-spacing: .17em;
+      font-size: 11px;
+      font-weight: 700
+    }
+
+    .marquee-track span {
+      display: flex;
+      align-items: center;
+      gap: 32px
+    }
+
+    .marquee b {
+      color: var(--orange);
+      font-size: 18px
+    }
+
+    @keyframes marquee {
+      to {
+        transform: translateX(-50%)
+      }
+    }
+
+    section {
+      padding: 110px 0
+    }
+
+    .section-head {
+      max-width: 670px;
+      margin-bottom: 45px
+    }
+
+    .section-head h2 {
+      font-size: clamp(38px, 4.8vw, 62px);
+      line-height: 1.03;
+      margin: 17px 0
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+      max-width: 590px
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px
+    }
+
+    .feature {
+      min-height: 240px;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: linear-gradient(145deg, #1b1518, #100d10);
+      position: relative;
+      overflow: hidden;
+      transition: .3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feature:hover {
+      transform: translateY(-7px);
+      border-color: #f36b3570
+    }
+
+    .feature:after {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      right: -65px;
+      bottom: -70px;
+      border-radius: 50%;
+      background: #f36b351a;
+      filter: blur(2px)
+    }
+
+    .feature-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: #f36b351b;
+      border: 1px solid #f36b3540;
+      color: #ff9868;
+      font-size: 20px;
+      margin-bottom: 22px;
+    }
+
+    .feature h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      letter-spacing: -.035em;
+      line-height: 1.25;
+    }
+
+    .feature p {
+      color: #b9adb2;
+      line-height: 1.58;
+      font-size: 13.5px;
+      margin: 0;
+      max-width: 320px
+    }
+
+    .manifesto {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(120deg, #e95f2c, #b83b20);
+      color: #1d0d08
+    }
+
+    .manifesto:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('assets/hex-spyce.svg') center/cover;
+      opacity: .20;
+      mix-blend-mode: screen
+    }
+
+    .manifesto .wrap {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr .65fr;
+      gap: 60px;
+      align-items: center
+    }
+
+    .manifesto h2 {
+      font-size: clamp(40px, 5.2vw, 68px);
+      line-height: 1.02;
+      margin: 16px 0 20px
+    }
+
+    .manifesto p {
+      line-height: 1.75;
+      color: #3a160d;
+      max-width: 570px
+    }
+
+    .manifesto .eyebrow {
+      color: #3a160d
+    }
+
+    .manifesto .eyebrow:before {
+      background: #3a160d
+    }
+
+    .manifesto-art {
+      min-height: 320px;
+      display: grid;
+      place-items: center;
+      position: relative
+    }
+
+    .manifesto-art iframe {
+      width: 320px;
+      height: 320px;
+      max-width: 100%;
+      border: 0;
+      background: transparent;
+      display: block;
+      pointer-events: none;
+      filter: drop-shadow(0 15px 35px rgba(50, 15, 8, 0.35));
+    }
+
+    @keyframes flame {
+      to {
+        transform: rotate(8deg) scale(1.06)
+      }
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px
+    }
+
+    .step {
+      border-top: 1px solid var(--line);
+      padding-top: 20px
+    }
+
+    .step-num {
+      font-family: "Space Grotesk";
+      color: var(--orange);
+      font-size: 13px;
+      letter-spacing: .1em
+    }
+
+    .step h3 {
+      font-size: 26px;
+      margin: 18px 0 10px
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75
+    }
+
+    .safety {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 60px;
+      align-items: center
+    }
+
+    .safety-visual {
+      aspect-ratio: 3 / 2;
+      border-radius: 28px;
+      border: 1px solid #ffffff17;
+      background: #151013;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      transform: none
+    }
+
+    .safety-visual.reveal,
+    .safety-visual.reveal.visible {
+      transform: none
+    }
+
+    .safety-visual dotlottie-player {
+      width: 100%;
+      height: 100%;
+      display: block;
+      pointer-events: none
+    }
+
+    .safety-list {
+      display: grid;
+      gap: 17px;
+      margin-top: 28px
+    }
+
+    .safety-row {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start
+    }
+
+    .check {
+      width: 25px;
+      height: 25px;
+      flex: 0 0 25px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #72dca51b;
+      color: #7be0a8;
+      font-size: 13px
+    }
+
+    .safety-row strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 15px
+    }
+
+    .safety-row span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6
+    }
+
+    .cta {
+      padding: 80px 0 100px
+    }
+
+    .cta-box {
+      padding: 65px 35px;
+      border: 1px solid #f36b3550;
+      border-radius: 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 50% 120%, #f36b352a, transparent 55%), linear-gradient(145deg, #1d1519, #100d10)
+    }
+
+    .cta-box:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('assets/onboarding-welcome.svg') center/cover;
+      opacity: .13
+    }
+
+    .cta-box>* {
+      position: relative
+    }
+
+    .cta-box h2 {
+      font-size: clamp(40px, 5.4vw, 68px);
+      line-height: 1.02;
+      margin: 18px auto;
+      max-width: 750px
+    }
+
+    .cta-box p {
+      color: var(--muted);
+      max-width: 530px;
+      margin: 0 auto 28px;
+      line-height: 1.7
+    }
+
+    .cta-box .hero-actions {
+      justify-content: center
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 30px 0 38px;
+      color: #9e9298;
+      font-size: 12px
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px
+    }
+
+    .footer-logo {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: #fff;
+      opacity: .9;
+      display: inline-block;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px
+    }
+
+    .footer-links a:hover {
+      color: white
+    }
+
+    .disclaimer {
+      font-size: 10px;
+      line-height: 1.6;
+      color: #7f7379;
+      margin-top: 20px;
+      max-width: 900px
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    @media(max-width:900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 15px
+      }
+
+      .hero {
+        padding-top: 50px
+      }
+
+      .hero-copy {
+        max-width: 650px
+      }
+
+      .visual {
+        height: 500px
+      }
+
+      .features {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .manifesto .wrap,
+      .safety {
+        grid-template-columns: 1fr;
+        gap: 25px
+      }
+
+      .manifesto-art {
+        min-height: 220px
+      }
+
+      .manifesto-art iframe {
+        width: 240px;
+        height: 240px;
+      }
+
+      .steps {
+        gap: 18px
+      }
+    }
+
+    @media(max-width:640px) {
+      .wrap {
+        width: min(var(--max), calc(100% - 32px))
+      }
+
+      header {
+        height: 72px
+      }
+
+      .brand {
+        font-size: 20px;
+      }
+
+      .navlinks {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 16px;
+        right: 16px;
+        background: #191316;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 20px;
+        flex-direction: column;
+        gap: 18px
+      }
+
+      .navlinks.open {
+        display: flex
+      }
+
+      .nav-cta {
+        display: none
+      }
+
+      .menu {
+        display: block
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 42px 0 65px
+      }
+
+      h1 {
+        font-size: clamp(48px, 14vw, 70px)
+      }
+
+      .hero-copy {
+        font-size: 16px
+      }
+
+      .visual {
+        height: 440px;
+        margin: 0 -8px
+      }
+
+      .phone {
+        width: 218px;
+        height: 425px;
+        border-radius: 32px
+      }
+
+      .phone-inner {
+        border-radius: 25px;
+        padding: 14px 12px
+      }
+
+      .profile-photo {
+        height: 235px
+      }
+
+      .profile-photo:before {
+        left: 32px
+      }
+
+      .profile-photo:after {
+        left: 59px
+      }
+
+      .float-card {
+        padding: 11px 12px
+      }
+
+      .match-card {
+        top: 47px;
+        right: -2px
+      }
+
+      .safe-card {
+        bottom: 43px;
+        left: -2px
+      }
+
+      .orb {
+        width: 280px;
+        height: 280px
+      }
+
+      .s1 {
+        top: 30px;
+        left: 12%
+      }
+
+      .s2 {
+        bottom: 55px;
+        right: 8%
+      }
+
+      section {
+        padding: 75px 0
+      }
+
+      .features {
+        grid-template-columns: 1fr
+      }
+
+      .feature {
+        min-height: 220px
+      }
+
+      .section-head {
+        margin-bottom: 30px
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+        gap: 24px
+      }
+
+      .manifesto {
+        padding: 70px 0
+      }
+
+      .manifesto-art {
+        min-height: 180px
+      }
+
+      .safety-visual {
+        aspect-ratio: 3 / 2
+      }
+
+      .cta {
+        padding: 60px 0 70px
+      }
+
+      .cta-box {
+        padding: 48px 20px
+      }
+
+      .footer-row {
+        align-items: flex-start;
+        flex-direction: column
+      }
+
+      .footer-links {
+        flex-wrap: wrap
+      }
+
+      .marquee-track {
+        font-size: 10px
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+
+      *,
+      *:before,
+      *:after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    /* SPYCE app-inspired scroll feed */
+    .phone {
+      height: 510px;
+      transform: rotate(-3deg)
+    }
+
+    .phone-inner {
+      background: linear-gradient(155deg, #321b20, #100d10 75%);
+      padding: 14px 12px
+    }
+
+    .phone-brand {
+      font-size: 20px
+    }
+
+    .app-feed {
+      margin-top: 12px;
+      height: 398px;
+      display: flex;
+      flex-direction: column;
+      min-height: 0
+    }
+
+    .feed-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 9px
+    }
+
+    .feed-label {
+      font-size: 9px;
+      letter-spacing: .15em;
+      font-weight: 800;
+      color: #ff9a69
+    }
+
+    .anon-pill {
+      font-size: 8px;
+      padding: 5px 7px;
+      border: 1px solid #f36b3550;
+      background: #f36b3516;
+      border-radius: 20px;
+      color: #ffc4a5
+    }
+
+    .feed-scroll {
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: #f36b3570 transparent;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-right: 3px;
+      flex: 1;
+      min-height: 0
+    }
+
+    .feed-scroll::-webkit-scrollbar {
+      width: 3px
+    }
+
+    .feed-scroll::-webkit-scrollbar-thumb {
+      background: #f36b3570;
+      border-radius: 10px
+    }
+
+    .thought-card {
+      border: 1px solid #ffffff17;
+      background: linear-gradient(145deg, #281b20, #191216);
+      border-radius: 13px;
+      padding: 10px 10px 8px;
+      flex-shrink: 0
+    }
+
+    .thought-card.confession {
+      border-color: #f36b3550;
+      background: linear-gradient(130deg, #42211f, #211418)
+    }
+
+    .thought-card.diary {
+      background: linear-gradient(130deg, #252037, #17121b)
+    }
+
+    .thought-card.late {
+      background: linear-gradient(130deg, #1c2636, #17121b)
+    }
+
+    .thought-card.bold {
+      background: linear-gradient(130deg, #38271b, #171216)
+    }
+
+    .thought-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 5px;
+      color: #ff9d70;
+      font-size: 7px;
+      letter-spacing: .06em;
+      font-weight: 800
+    }
+
+    .thought-meta span:last-child {
+      color: #a99ba1;
+      font-weight: 500;
+      letter-spacing: 0
+    }
+
+    .thought-card p {
+      font-size: 10px;
+      line-height: 1.5;
+      color: #fff2ed;
+      margin: 8px 0 9px
+    }
+
+    .thought-actions {
+      border-top: 1px solid #ffffff12;
+      padding-top: 7px;
+      display: flex;
+      justify-content: space-between;
+      color: #c2adb4;
+      font-size: 7px
+    }
+
+    .compose-bar {
+      margin-top: 8px;
+      border: 1px solid #ffffff24;
+      background: #ffffff09;
+      border-radius: 10px;
+      padding: 9px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #a99ba1;
+      font-size: 8px;
+      flex-shrink: 0
+    }
+
+    .compose-bar b {
+      display: grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 7px;
+      background: var(--orange);
+      color: #210e08;
+      font-size: 16px
+    }
+
+    .phone-bottom {
+      margin-top: 9px;
+      gap: 18px
+    }
+
+    @media(max-width:640px) {
+      .phone {
+        height: 465px
+      }
+
+      .app-feed {
+        height: 355px
+      }
+
+      .thought-card p {
+        font-size: 9px
+      }
+
+      .phone-bottom {
+        margin-top: 8px
+      }
+    }
+
+
+    /* Expanded SPYCE feature catalogue */
+    .features {
+      grid-template-columns: repeat(3, minmax(0, 1fr))
+    }
+
+    .feature {
+      min-height: 245px
+    }
+
+    .feature-icon {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700
+    }
+
+    @media(max-width:900px) {
+      .features {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+    }
+
+    @media(max-width:640px) {
+      .features {
+        grid-template-columns: 1fr
+      }
+
+      .feature {
+        min-height: 190px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ambient"></div>
+  <div class="noise"></div>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="SPYCE home">SPYCE</a>
+      <nav class="navlinks" id="navlinks"><a href="#experience">The experience</a><a href="#how">How it works</a><a
+          href="#safety">Safety first</a></nav>
+      <a class="nav-cta" href="#join">Meet your kind of spark <span>↗</span></a>
+      <button class="menu" id="menu" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div class="topo" aria-hidden="true">
+        <svg viewBox="0 0 1440 780" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="heroSunGrad" cx="44%" cy="46%" r="52%">
+              <stop offset="0%" stop-color="#ea5e27" />
+              <stop offset="42%" stop-color="#d6511e" />
+              <stop offset="72%" stop-color="#9a340e" />
+              <stop offset="88%" stop-color="#551a06" stop-opacity="0.65" />
+              <stop offset="100%" stop-color="#28120a" stop-opacity="0" />
+            </radialGradient>
+            <filter id="heroSunBlur" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="3.5" />
+            </filter>
+            <filter id="lineSoftness" x="-5%" y="-5%" width="110%" height="110%">
+              <feGaussianBlur stdDeviation="0.4" />
+            </filter>
+          </defs>
+
+          <!-- Sun Disc placed behind the phone mockup -->
+          <circle cx="1025" cy="385" r="190" fill="url(#heroSunGrad)" filter="url(#heroSunBlur)" />
+
+          <!-- Clean, spacious, bold dark espresso topographic curves matching reference exactly -->
+          <g stroke="#1a0904" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" opacity="0.90"
+            filter="url(#lineSoftness)">
+            <!-- 1. Top-Left Inner Closed Loop (Above 'Less spark.') -->
+            <path
+              d="M 445,35 C 476,35 494,68 494,112 C 494,156 476,188 445,188 C 414,188 396,156 396,112 C 396,68 414,35 445,35 Z" />
+
+            <!-- 2. Second Closed Loop (Enclosing loop 1, above & behind headline) -->
+            <path
+              d="M 445,-15 C 525,-15 565,45 565,125 C 565,205 525,268 445,268 C 365,268 325,205 325,125 C 325,45 365,-15 445,-15 Z" />
+
+            <!-- 3. Third Enclosing Sweep (Circling around top loops) -->
+            <path
+              d="M 235,-20 C 245,65 250,145 295,220 C 345,295 390,342 445,342 C 500,342 555,285 595,205 C 630,140 635,50 630,-20" />
+
+            <!-- 4. Outer Left Contour Sweep (Along headline & proof badge) -->
+            <path d="M 125,-20 C 145,100 155,220 130,360 C 95,500 88,615 125,800" />
+
+            <!-- 5. Far Bottom-Left Corner Arc -->
+            <path d="M -20,440 C 40,465 72,545 60,635 C 48,715 8,750 -20,800" />
+
+            <!-- 6. Contour Under Headline, Paragraph & CTA Buttons -->
+            <path d="M 360,335 C 445,365 485,445 498,545 C 510,635 450,710 430,800" />
+
+            <!-- 7. Signature Grand Center Sweep (Passing Under Phone & Cutting Over Sun Disc) -->
+            <path
+              d="M 730,-20 C 720,120 705,260 720,380 C 730,465 755,535 812,612 C 868,680 945,690 1045,685 C 1145,680 1215,720 1280,800" />
+
+            <!-- 8. Right-Side Contour (Sweeping Around Phone and Floating Match Card) -->
+            <path
+              d="M 870,-20 C 875,60 900,105 960,120 C 1030,135 1130,130 1205,160 C 1270,190 1280,260 1265,330 C 1245,410 1220,490 1215,590 C 1210,680 1235,740 1260,800" />
+
+            <!-- 9. Far-Right Edge Elevation Ridge -->
+            <path
+              d="M 1050,-20 C 1130,20 1230,55 1310,75 C 1390,95 1420,180 1400,260 C 1370,360 1365,470 1390,570 C 1405,630 1410,720 1410,800" />
+
+            <!-- 10. Bottom Center Saddle Contour Below Phone -->
+            <path d="M 640,800 C 665,710 710,670 770,680 C 820,690 850,740 860,800" />
+          </g>
+        </svg>
+      </div>
+      <div class="wrap hero-grid">
+        <div class="hero-text">
+          <div class="eyebrow">Made for Gen Z, by Gen Z</div>
+          <h1>Less spark.<br><span class="hot">More SPYCE.</span></h1>
+          <p class="hero-copy">
+            Made for Gen Z, by Gen Z.<br>
+            Like the one whose match the vibe,
+            Be anonymous when you need to.
+            Be yourself when you're ready.
+            Be bold, spill the truth, and let your 3 AM thoughts exist without the fear of being judged.
+          </p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#join">Enter your SPYCE era <span>↗</span></a><a
+              class="btn btn-ghost" href="#experience">Explore the vibe <span>↓</span></a></div>
+          <div class="tiny-proof"><span class="pulse"></span> Built for grown-up connections · 18+ only</div>
+        </div>
+        <div class="visual" aria-label="Illustration of the SPYCE dating app">
+          <div class="orb"></div><span class="spark s1">✦</span><span class="spark s2">✧</span>
+          <div class="phone">
+            <div class="phone-inner">
+              <div class="phone-top"><span>9:41</span><span
+                  class="phone-brand">SP<span>Y</span>CE</span><span>•••</span></div>
+              <div class="app-feed">
+                <div class="feed-head"><span class="feed-label">YOUR SPACE</span><span class="anon-pill">◉
+                    anonymous</span></div>
+                <div class="feed-scroll">
+                  <article class="thought-card confession">
+                    <div class="thought-meta"><span>✦ CONFESSION</span><span>2 min ago</span></div>
+                    <p>Sometimes I act like I don't care, because caring too much is scary.</p>
+                    <div class="thought-actions"><span>♡ 128</span><span>↗ share energy</span></div>
+                  </article>
+                  <article class="thought-card diary">
+                    <div class="thought-meta"><span>☾ MY DIARY</span><span>11:48 PM</span></div>
+                    <p>Today was a lot. But I made it through. That counts. 🧡</p>
+                    <div class="thought-actions"><span>♡ 84</span><span>☻ felt this</span></div>
+                  </article>
+                  <article class="thought-card late">
+                    <div class="thought-meta"><span>☄ 3 AM THOUGHTS</span><span>3:07 AM</span></div>
+                    <p>What if the life I want is on the other side of being brave?</p>
+                    <div class="thought-actions"><span>♡ 216</span><span>✦ same here</span></div>
+                  </article>
+                  <article class="thought-card bold">
+                    <div class="thought-meta"><span>⚡ BE BOLD</span><span>just now</span></div>
+                    <p>Reminder: you don't owe everyone a version of you they understand.</p>
+                    <div class="thought-actions"><span>♡ 97</span><span>↗ pass it on</span></div>
+                  </article>
+                </div>
+                <div class="compose-bar"><span>Drop what’s on your mind…</span><b>＋</b></div>
+              </div>
+              <div class="phone-bottom">
+                <div class="action-circle">☾</div>
+                <div class="action-circle like">＋</div>
+                <div class="action-circle">♡</div>
+              </div>
+            </div>
+          </div>
+          <!-- Floating badges anchored directly to phone diagram -->
+          <div class="float-card match-card"><small><span class="match-icon">✦</span> A little
+              chemistry</small><strong>Your vibe, their vibe.</strong></div>
+          <div class="float-card safe-card"><small><span class="safe-icon">✓</span> Confidence looks
+              good</small><strong>Profile verification</strong></div>
+        </div>
+      </div>
+    </section>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>Anonymity <b>✳</b> Be yourself <b>✳</b> Be bold <b>✳</b> No judgement <b>✳</b> Confessions <b>✳</b> 3 AM
+          thoughts <b>✳</b></span>
+        <span>Anonymity <b>✳</b> Be yourself <b>✳</b> Be bold <b>✳</b> No judgement <b>✳</b> Confessions <b>✳</b> 3 AM
+          thoughts <b>✳</b></span>
+      </div>
+    </div>
+    <section id="experience">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow">The SPYCE difference</div>
+          <h2>Your thoughts.<br><span style="color:var(--orange)">Your rules.</span></h2>
+          <p>Some thoughts are too loud to keep inside. Some feelings are easier to share without a name attached. SPYCE
+            is your space to express, confess, vent, connect and be unapologetically you—without the pressure to
+            perform.</p>
+        </div>
+        <div class="features">
+          <article class="feature reveal">
+            <div class="feature-icon">✦</div>
+            <h3>Anonymous mode</h3>
+            <p>Share what’s on your mind without putting your whole identity out there. Choose how much of yourself to
+              reveal.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="feature-icon">♡</div>
+            <h3>Be unapologetically you</h3>
+            <p>Your weird, your soft side, your bold takes. Bring all of it. This space is made for the real you.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="feature-icon">☏</div>
+            <h3>Confessions, no judgement</h3>
+            <p>Get it off your chest. Share the secret, the crush, the regret or the thought you can’t say out loud.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="feature-icon">◈</div>
+            <h3>Your diary, your way</h3>
+            <p>A private-feeling corner for your inner monologue, little wins, messy feelings and everything in between.
+            </p>
+          </article>
+          <article class="feature reveal">
+            <div class="feature-icon">✓</div>
+            <h3>Your 3 AM thoughts</h3>
+            <p>For the overthinking, the random realisations and the messages you type but never send. Let the night
+              thoughts out.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="feature-icon">⌁</div>
+            <h3>Bold takes welcome</h3>
+            <p>Speak freely, respect boundaries, and help make the community feel safer for everyone.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="feature-icon">✦</div>
+            <h3>Desires, Without the Filter</h3>
+            <p> Explore your curiosities, share your fantasies, and express yourself honestly—with boundaries respected.
+            </p>
+          </article>
+          <article class="feature reveal">
+            <div class="feature-icon">♡</div>
+            <h3>Flirt a Little. Feel a Little More.</h3>
+            <p>Talk about attraction, closeness, boundaries, and the feelings that are hard to put into words. Be open,
+              be honest, and feel safe enough to be yourself.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="feature-icon">✦</div>
+            <h3>Grown-Up Conversations. Real Intimacy.</h3>
+            <p>Talk about attraction, intimacy, boundaries, and the feelings that are hard to put into words. Be open,
+              be honest, and feel safe enough to be real.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="manifesto">
+      <div class="wrap">
+        <div class="reveal">
+          <div class="eyebrow">NO MASKS. NO PERFORMANCE.</div>
+          <h2>You don’t have to<br>have it all figured out.</h2>
+          <p>A messy thought. A secret confession. A feeling you’re still figuring out. SPYCE is a place to let it out,
+            explore who you are and find people who get it—without pretending to be someone else.</p><a class="btn"
+            style="background:#1c0c08;color:#fff;border-color:#1c0c08" href="#how">See how it works <span>↗</span></a>
+        </div>
+        <div class="manifesto-art reveal">
+          <iframe src="https://lottie.host/embed/a3d18715-5886-4043-ad52-5c51369ede23/Ehn0CR7y8P.lottie"
+            title="SPYCE flame animation"></iframe>
+        </div>
+      </div>
+    </section>
+    <section id="how">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow">Simple by design</div>
+          <h2>Your inner world<br>deserves some SPYCE.</h2>
+          <p>Scroll the feed, drop a confession, share a hot take, write it in your diary or connect through built-in
+            messages and calls. Start wherever you are.</p>
+        </div>
+        <div class="steps">
+          <article class="step reveal"><span class="step-num">01 / MAKE IT YOU</span>
+            <h3>Show up your way</h3>
+            <p>Choose how you want to express yourself. Share openly or keep some things anonymous.</p>
+          </article>
+          <article class="step reveal"><span class="step-num">02 / FOLLOW THE SPARK</span>
+            <h3>Say what’s real</h3>
+            <p>Drop a confession, write a diary entry or post that 3 AM thought you can’t stop replaying.</p>
+          </article>
+          <article class="step reveal"><span class="step-num">03 / LET IT FLOW</span>
+            <h3>Find your people</h3>
+            <p>React, relate and connect with people who understand your side of the story.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section id="safety">
+      <div class="wrap safety">
+        <div class="safety-visual reveal">
+          <dotlottie-player
+            src="https://lottie.host/cc6fecf6-dff3-4944-815a-55d32d8801d6/1Y5M7Mj1LG.lottie"
+            background="transparent" speed="1" loop autoplay
+            aria-label="People chatting on their phones"></dotlottie-player>
+        </div>
+        <div class="reveal">
+          <div class="eyebrow">Your comfort comes first</div>
+          <h2 style="font-size:clamp(38px,4.5vw,58px);line-height:1.04;margin:17px 0">Be bold.<br>Keep it kind.</h2>
+          <p style="color:var(--muted);line-height:1.75">No judgement doesn’t mean no boundaries. SPYCE is built for
+            honest expression with tools that help people manage unwanted interactions.</p>
+          <div class="safety-list">
+            <div class="safety-row">
+              <div class="check">✓</div>
+              <div><strong>Profile verification support</strong><span>Face-liveness checks help establish that a person
+                  is present during verification.</span></div>
+            </div>
+            <div class="safety-row">
+              <div class="check">✓</div>
+              <div><strong>Block and report controls</strong><span>Tools to help you manage unwanted interactions and
+                  flag behaviour.</span></div>
+            </div>
+            <div class="safety-row">
+              <div class="check">✓</div>
+              <div><strong>18+ community</strong><span>SPYCE is intended for adults aged 18 and over.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="cta" id="join">
+      <div class="wrap">
+        <div class="cta-box reveal">
+          <div class="eyebrow" style="justify-content:center">The good kind of butterflies</div>
+          <h2>Got something<br><span style="color:var(--orange)">on your mind?</span></h2>
+          <p>A confession, a diary entry, a wild thought or just you being you. Come as you are. Say what you mean. Make
+            it SPYCE.</p>
+          <div class="hero-actions"><a class="btn btn-primary"
+              href="mailto:info@spycenow.com?subject=SPYCE%20app%20access">Get in touch <span>↗</span></a><a
+              class="btn btn-ghost" href="https://forms.gle/VxurxFojCSn9mgex5" target="_blank" rel="noopener">Pre-launch form
+              <span>↗</span></a><a
+              class="btn btn-ghost" href="https://spycenow.com" target="_blank" rel="noopener">Visit SPYCE
+              <span>↗</span></a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap">
+      <div class="footer-row"><a class="footer-logo" href="#top" aria-label="SPYCE home">SPYCE</a>
+        <div>© <span id="year"></span> SPYCE. Less spark. More SPYCE.</div>
+        <div class="footer-links"><a href="https://spycenow.com" target="_blank" rel="noopener">Website</a><a
+            href="mailto:info@spycenow.com">Contact</a><a
+            href="https://forms.gle/VxurxFojCSn9mgex5" target="_blank" rel="noopener">Pre-launch form</a><a
+            href="mailto:legal@spycenow.com">Privacy & legal</a><a href="mailto:safety@spycenow.com">Safety</a></div>
+      </div>
+      <p class="disclaimer">SPYCE is an expression and connection app concept for Gen Z. Use anonymity responsibly; do
+        not share sensitive personal information, and respect community guidelines. The phone content shown here is
+        illustrative.</p>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const menu = document.getElementById('menu'), links = document.getElementById('navlinks');
+    menu.addEventListener('click', () => { links.classList.toggle('open'); menu.textContent = links.classList.contains('open') ? '×' : '☰' });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { links.classList.remove('open'); menu.textContent = '☰' }));
+    const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target) } }), { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+
+</html>
